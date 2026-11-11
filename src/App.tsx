@@ -2,7 +2,9 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 import AdminPage from "./pages/AdminPage/AdminPage.jsx";
 import SecretariaPage from "./pages/SecretariaPage/SecretariaPage.jsx";
-import RolePlaceholder from "./pages/RolePlaceholder/RolePlaceholder.jsx";
+import DocentePage from "./pages/DocentePage/DocentePage.jsx";
+import EstudiantePage from "./pages/EstudiantePage/EstudiantePage.jsx";
+import ApoderadoPage from "./pages/ApoderadoPage/ApoderadoPage.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 export default function App() {
@@ -33,7 +35,7 @@ export default function App() {
           path="/docente"
           element={
             <ProtectedRoute allowedRoles={["DOCENTE"]}>
-              <RolePlaceholder />
+              <DocentePage />
             </ProtectedRoute>
           }
         />
@@ -41,7 +43,7 @@ export default function App() {
           path="/estudiante"
           element={
             <ProtectedRoute allowedRoles={["ESTUDIANTE"]}>
-              <RolePlaceholder />
+              <EstudiantePage />
             </ProtectedRoute>
           }
         />
@@ -49,7 +51,7 @@ export default function App() {
           path="/apoderado"
           element={
             <ProtectedRoute allowedRoles={["APODERADO"]}>
-              <RolePlaceholder />
+              <ApoderadoPage />
             </ProtectedRoute>
           }
         />

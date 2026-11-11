@@ -1,18 +1,9 @@
 import { useMemo, useState } from "react";
-import { BookOpen, CalendarDays, CircleX, Clock, GraduationCap, Plus, Trash } from "lucide-react";
+import { BookOpen, CircleX, Clock, GraduationCap, Plus, Trash } from "lucide-react";
 import { adminService, getApiError } from "../../../services/api";
 import { ConfirmDialog, Modal } from "../../../components/ui/Modal";
 import { fullName } from "../../../utils/format";
-
-const DIAS = ["LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO"];
-const DIA_LABEL = {
-  LUNES: "Lunes",
-  MARTES: "Martes",
-  MIERCOLES: "Miércoles",
-  JUEVES: "Jueves",
-  VIERNES: "Viernes",
-  SABADO: "Sábado",
-};
+import ScheduleEditor from "./ScheduleEditor";
 
 export default function CoursesView({ data, onReload, showToast }) {
   const anios = useMemo(
@@ -29,8 +20,6 @@ export default function CoursesView({ data, onReload, showToast }) {
   const [saving, setSaving] = useState(false);
 
   const [scheduleCourse, setScheduleCourse] = useState(null);
-  const [schedule, setSchedule] = useState([]);
-  const [scheduleLoading, setScheduleLoading] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
@@ -94,18 +83,14 @@ export default function CoursesView({ data, onReload, showToast }) {
     }
   };
 
-  const openSchedule = async (curso) => {
+  const openSchedule = (curso) => {
     setScheduleCourse(curso);
-    setSchedule([]);
-    setScheduleLoading(true);
-    try {
-      const bloques = await adminService.listarHorario(curso.id);
-      setSchedule(bloques || []);
-    } catch (error) {
-      showToast("error", getApiError(error).message);
-    } finally {
-      setScheduleLoading(false);
-    }
+  };
+
+  const handleScheduleSaved = () => {
+    showToast("success", "Horario del curso actualizado.");
+    setScheduleCourse(null);
+    onReload();
   };
 
   const handleDelete = async () => {
@@ -121,11 +106,6 @@ export default function CoursesView({ data, onReload, showToast }) {
       setDeleteLoading(false);
     }
   };
-
-  const groupedSchedule = DIAS.map((dia) => ({
-    dia,
-    bloques: schedule.filter((bloque) => bloque.dia === dia).sort((a, b) => a.horaInicio.localeCompare(b.horaInicio)),
-  })).filter((group) => group.bloques.length);
 
   return (
     <div className="page">
@@ -373,38 +353,16 @@ export default function CoursesView({ data, onReload, showToast }) {
         open={Boolean(scheduleCourse)}
         onClose={() => setScheduleCourse(null)}
         title={scheduleCourse ? `Horario · ${scheduleCourse.materiaNombre} ${scheduleCourse.seccionEtiqueta}` : "Horario"}
-        subtitle="Plantilla semanal del curso. La asistencia se registra por bloque y fecha."
-        size="md"
+        subtitle="Plantilla semanal del curso. Los cambios reemplazan la hoja completa."
+        size="lg"
       >
-        {scheduleLoading ? (
-          <div className="loading-state loading-state--inline">
-            <span className="spinner spinner--dark" />
-            <p>Cargando horario…</p>
-          </div>
-        ) : groupedSchedule.length ? (
-          <div className="schedule">
-            {groupedSchedule.map((group) => (
-              <div key={group.dia} className="schedule__day">
-                <span className="schedule__label">{DIA_LABEL[group.dia]}</span>
-                <div className="schedule__blocks">
-                  {group.bloques.map((bloque) => (
-                    <span key={bloque.id} className="schedule__block">
-                      <Clock size={14} /> {bloque.horaInicio?.slice(0, 5)} — {bloque.horaFin?.slice(0, 5)}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="empty empty--compact">
-            <span className="empty__icon">
-              <CalendarDays size={20} />
-            </span>
-            <p className="empty__title">Sin horario configurado</p>
-            <p className="empty__text">El docente aún no tiene bloques asignados para este curso.</p>
-          </div>
-        )}
+        {scheduleCourse ? (
+          <ScheduleEditor
+            curso={scheduleCourse}
+            onCancel={() => setScheduleCourse(null)}
+            onSaved={handleScheduleSaved}
+          />
+        ) : null}
       </Modal>
 
       <ConfirmDialog

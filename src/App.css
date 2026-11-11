@@ -51,6 +51,17 @@
   --pastel-neutral-200: #e4dfeb;
   --color-neutral: #6e647d;
 
+  /* ---- Semáforo académico (derivados pastel) ---- */
+  --semaforo-red: #c23b3b;
+  --semaforo-red-soft: #fdecec;
+  --semaforo-red-border: #f6caca;
+  --semaforo-amber: #b45309;
+  --semaforo-amber-soft: #fef3c7;
+  --semaforo-amber-border: #fde68a;
+  --semaforo-green: #0e8a5f;
+  --semaforo-green-soft: #e3f6ec;
+  --semaforo-green-border: #bfe8d4;
+
   /* ---- Superficies ---- */
   --bg-app: #faf9fc;
   --bg-card: #ffffff;

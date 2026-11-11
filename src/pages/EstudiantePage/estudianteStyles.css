@@ -1,0 +1,1479 @@
+/* ==========================================================================
+   ESTUDIANTE — Estilos exclusivos de EstudiantePage y sus vistas
+   Se importan desde pages/EstudiantePage/EstudiantePage.jsx
+   El armazón del panel (sidebar, topbar, tarjetas, tablas) vive en
+   styles/panel.css y solo se sobreescribe aquí lo propio del rol.
+   Todos los derivados de color son tonos pastel declarados en App.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   ESTUDIANTE — ESTRUCTURA Y UTILIDADES
+   ========================================================================== */
+
+.sidebar__badge--estudiante {
+  background: rgba(37, 99, 235, 0.16);
+  border-color: rgba(199, 220, 248, 0.28);
+  color: var(--pastel-info-200);
+}
+
+.estudiante-no-matricula {
+  margin-top: 0;
+}
+
+.estudiante-cell-right {
+  text-align: right;
+}
+
+.estudiante-inline-empty {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 14px 16px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--pastel-neutral-50);
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.estudiante-plan-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  border-radius: var(--radius-full);
+  background: var(--pastel-primary-50);
+  border: 1px solid var(--pastel-primary-100);
+  color: var(--text-secondary);
+  font-size: 10.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ---- Nota / promedio ---- */
+
+.estudiante-note {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 56px;
+  padding: 5px 11px;
+  border-radius: var(--radius-full);
+  background: var(--pastel-neutral-100);
+  color: var(--color-neutral);
+  font-size: 13px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.estudiante-note.is-success {
+  background: var(--pastel-success-100);
+  color: var(--color-success);
+}
+
+.estudiante-note.is-info {
+  background: var(--pastel-info-100);
+  color: var(--color-info);
+}
+
+.estudiante-note.is-accent {
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+}
+
+.estudiante-note.is-danger {
+  background: var(--pastel-danger-100);
+  color: var(--color-danger);
+}
+
+.estudiante-note.is-neutral {
+  background: var(--pastel-neutral-100);
+  color: var(--color-neutral);
+}
+
+/* ---- Punto/icono de curso con tonos pastel ---- */
+
+.estudiante-course-dot,
+.estudiante-course-card__icon,
+.estudiante-metric__icon {
+  display: grid;
+  place-items: center;
+  background: var(--pastel-neutral-100);
+  color: var(--color-neutral);
+}
+
+.estudiante-course-dot {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  border-radius: var(--radius-xs);
+}
+
+.estudiante-course-card__icon {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  border-radius: var(--radius-md);
+}
+
+.estudiante-metric__icon {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-xs);
+}
+
+.estudiante-course-dot.is-primary,
+.estudiante-course-card__icon.is-primary,
+.estudiante-metric__icon.is-primary {
+  background: var(--pastel-primary-100);
+  color: var(--color-primary);
+}
+
+.estudiante-course-dot.is-secondary,
+.estudiante-course-card__icon.is-secondary,
+.estudiante-metric__icon.is-secondary {
+  background: var(--pastel-secondary-100);
+  color: var(--color-secondary);
+}
+
+.estudiante-course-dot.is-accent,
+.estudiante-course-card__icon.is-accent,
+.estudiante-metric__icon.is-accent {
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+}
+
+.estudiante-course-dot.is-success,
+.estudiante-course-card__icon.is-success,
+.estudiante-metric__icon.is-success {
+  background: var(--pastel-success-100);
+  color: var(--color-success);
+}
+
+.estudiante-course-dot.is-info,
+.estudiante-course-card__icon.is-info,
+.estudiante-metric__icon.is-info {
+  background: var(--pastel-info-100);
+  color: var(--color-info);
+}
+
+.estudiante-course-dot.is-neutral,
+.estudiante-course-card__icon.is-neutral,
+.estudiante-metric__icon.is-neutral {
+  background: var(--pastel-neutral-100);
+  color: var(--color-neutral);
+}
+
+/* ==========================================================================
+   ESTUDIANTE — RESUMEN
+   ========================================================================== */
+
+.estudiante-bimestre-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.estudiante-bimestre-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  border-radius: var(--radius-full);
+  background: var(--pastel-secondary-50);
+  border: 1px solid var(--pastel-secondary-200);
+  color: var(--color-secondary);
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.estudiante-overview-note {
+  margin-top: 14px;
+}
+
+/* ==========================================================================
+   ESTUDIANTE — MIS CURSOS
+   ========================================================================== */
+
+.estudiante-course-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.estudiante-course-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  min-width: 0;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.estudiante-course-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--pastel-primary-200);
+  box-shadow: var(--shadow-md);
+}
+
+.estudiante-course-card__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.estudiante-course-card__title {
+  flex: 1;
+  min-width: 0;
+}
+
+.estudiante-course-card__title h3 {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.estudiante-course-card__title p {
+  margin-top: 2px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+.estudiante-course-card__docente {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 7px;
+  padding: 4px 9px;
+  border-radius: var(--radius-full);
+  background: var(--pastel-secondary-50);
+  border: 1px solid var(--pastel-secondary-200);
+  color: var(--color-secondary);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.estudiante-course-card__metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.estudiante-course-card__metrics > div {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: 0 9px;
+  padding: 11px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--pastel-neutral-50);
+  min-width: 0;
+}
+
+.estudiante-course-card__metrics > div > small {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.estudiante-course-card__metrics > div > strong {
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.estudiante-course-card__metrics .estudiante-metric__icon {
+  grid-row: 1 / span 2;
+}
+
+.estudiante-course-card__units {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.estudiante-course-card__label {
+  font-size: 9.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+}
+
+.estudiante-unit-chip {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xs);
+  background: var(--color-white);
+  min-width: 0;
+}
+
+.estudiante-unit-chip b {
+  flex: 0 0 auto;
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--color-secondary);
+  background: var(--pastel-secondary-100);
+  border-radius: var(--radius-full);
+  padding: 2px 7px;
+}
+
+.estudiante-unit-chip > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.estudiante-unit-chip strong {
+  font-size: 11.5px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.estudiante-unit-chip small {
+  font-size: 10px;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.estudiante-unit-chip__contents {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: var(--radius-full);
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.estudiante-course-card__empty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 12px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--pastel-neutral-50);
+  color: var(--text-muted);
+  font-size: 11.5px;
+}
+
+.estudiante-course-card__actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+  margin-top: auto;
+}
+
+.estudiante-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 11.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: all var(--transition);
+}
+
+.estudiante-action.is-primary {
+  background: var(--pastel-primary-100);
+  color: var(--color-primary);
+  border-color: var(--pastel-primary-200);
+}
+
+.estudiante-action.is-primary:hover {
+  background: var(--pastel-primary-200);
+}
+
+.estudiante-action.is-secondary {
+  background: var(--pastel-secondary-100);
+  color: var(--color-secondary);
+  border-color: var(--pastel-secondary-200);
+}
+
+.estudiante-action.is-secondary:hover {
+  background: var(--pastel-secondary-200);
+}
+
+.estudiante-action.is-accent {
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+  border-color: var(--pastel-accent-200);
+}
+
+.estudiante-action.is-accent:hover {
+  background: var(--pastel-accent-200);
+}
+
+/* ==========================================================================
+   ESTUDIANTE — PLANIFICACIÓN
+   ========================================================================== */
+
+.estudiante-plan-toolbar {
+  justify-content: flex-start;
+}
+
+.estudiante-plan-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.estudiante-plan-group {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.estudiante-plan-group__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--pastel-primary-100);
+  background: var(--pastel-primary-50);
+}
+
+.estudiante-plan-group__head h3 {
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--color-primary);
+}
+
+.estudiante-plan-group__head p {
+  margin-top: 2px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.estudiante-plan-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+}
+
+.estudiante-unit-number {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--pastel-primary-100);
+  color: var(--color-secondary);
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.estudiante-unit-card {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  overflow: hidden;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.estudiante-unit-card.is-open {
+  border-color: var(--pastel-secondary-200);
+  box-shadow: var(--shadow-xs);
+}
+
+.estudiante-unit-card__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+}
+
+.estudiante-unit-card__title {
+  flex: 1;
+  min-width: 0;
+}
+
+.estudiante-unit-card__title h4 {
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.estudiante-unit-card__title p {
+  margin-top: 3px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.estudiante-unit-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 0 16px 12px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.estudiante-unit-card__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.estudiante-unit-card__contents {
+  padding: 14px 16px 16px;
+  border-top: 1px solid var(--pastel-neutral-100);
+  background: var(--pastel-neutral-50);
+}
+
+.estudiante-content-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.estudiante-content-row {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+}
+
+.estudiante-content-row__order {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-full);
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+  font-size: 10.5px;
+  font-weight: 800;
+}
+
+.estudiante-content-row strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.estudiante-content-row small {
+  display: block;
+  margin-top: 2px;
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.estudiante-content-row em {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 5px;
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--color-secondary);
+}
+
+/* ==========================================================================
+   ESTUDIANTE — CALIFICACIONES
+   ========================================================================== */
+
+.estudiante-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.estudiante-summary-grid .stat-card__icon--danger {
+  background: var(--pastel-danger-100);
+  color: var(--color-danger);
+}
+
+.estudiante-grade-courses {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.estudiante-grade-course .card__sub svg {
+  vertical-align: -2px;
+}
+
+.estudiante-grade-course__title {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+}
+
+.estudiante-grade-course__score {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  flex: 0 0 auto;
+}
+
+.estudiante-grade-course__score small {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.estudiante-grade-units {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.estudiante-grade-unit {
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--pastel-neutral-50);
+}
+
+.estudiante-grade-unit__head {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.estudiante-grade-unit__title {
+  flex: 1;
+  min-width: 0;
+}
+
+.estudiante-grade-unit__title strong {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.estudiante-grade-unit__title small {
+  display: block;
+  margin-top: 2px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.estudiante-grade-criteria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 10px;
+  padding-left: 45px;
+}
+
+.estudiante-grade-criterion {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+}
+
+.estudiante-grade-criterion small {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.estudiante-grade-criterion strong {
+  font-size: 12.5px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-neutral);
+}
+
+.estudiante-grade-criterion strong.is-success {
+  color: var(--color-success);
+}
+
+.estudiante-grade-criterion strong.is-info {
+  color: var(--color-info);
+}
+
+.estudiante-grade-criterion strong.is-accent {
+  color: var(--color-accent-deep);
+}
+
+.estudiante-grade-criterion strong.is-danger {
+  color: var(--color-danger);
+}
+
+.estudiante-grade-criterion strong.is-neutral {
+  color: var(--color-neutral);
+}
+
+/* ==========================================================================
+   ESTUDIANTE — ASISTENCIA
+   ========================================================================== */
+
+.estudiante-attendance-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.estudiante-attendance-percent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 15px;
+  border-radius: var(--radius-full);
+  background: var(--pastel-neutral-100);
+  color: var(--color-neutral);
+  font-size: 18px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.estudiante-attendance-percent.is-success {
+  background: var(--pastel-success-100);
+  color: var(--color-success);
+}
+
+.estudiante-attendance-percent.is-info {
+  background: var(--pastel-info-100);
+  color: var(--color-info);
+}
+
+.estudiante-attendance-percent.is-accent {
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+}
+
+.estudiante-attendance-percent.is-danger {
+  background: var(--pastel-danger-100);
+  color: var(--color-danger);
+}
+
+.estudiante-attendance-bar {
+  height: 11px;
+  margin-top: 14px;
+  border-radius: var(--radius-full);
+  background: var(--pastel-neutral-100);
+  overflow: hidden;
+}
+
+.estudiante-attendance-bar__fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-full);
+  min-width: 3px;
+  transition: width 0.4s ease;
+  background: var(--color-info);
+}
+
+.estudiante-attendance-bar__fill.is-success {
+  background: var(--color-success);
+}
+
+.estudiante-attendance-bar__fill.is-info {
+  background: var(--color-info);
+}
+
+.estudiante-attendance-bar__fill.is-accent {
+  background: var(--color-accent);
+}
+
+.estudiante-attendance-bar__fill.is-danger {
+  background: var(--color-danger);
+}
+
+.estudiante-attendance-breakdown {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-top: 13px;
+}
+
+.estudiante-attendance-breakdown > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: var(--radius-full);
+  font-size: 10.5px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.estudiante-attendance-breakdown .is-present {
+  background: var(--pastel-success-100);
+  color: var(--color-success);
+}
+
+.estudiante-attendance-breakdown .is-late {
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+}
+
+.estudiante-attendance-breakdown .is-justified {
+  background: var(--pastel-info-100);
+  color: var(--color-info);
+}
+
+.estudiante-attendance-breakdown .is-absent {
+  background: var(--pastel-danger-100);
+  color: var(--color-danger);
+}
+
+.estudiante-attendance-summary .alert {
+  margin-top: 14px;
+}
+
+.estudiante-attendance-date {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.estudiante-attendance-date strong {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.estudiante-attendance-date small {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.estudiante-attendance-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.estudiante-attendance-ticket {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 7px;
+  font-size: 9px;
+}
+
+/* ==========================================================================
+   ESTUDIANTE — MATERIALES
+   ========================================================================== */
+
+.estudiante-material-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 16px;
+}
+
+.estudiante-material-card {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  padding: 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  min-width: 0;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.estudiante-material-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--pastel-info-200);
+  box-shadow: var(--shadow-md);
+}
+
+.estudiante-material-card__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+}
+
+.estudiante-material-card__icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--pastel-neutral-100);
+  color: var(--color-neutral);
+}
+
+.estudiante-material-card__icon.is-danger {
+  background: var(--pastel-danger-100);
+  color: var(--color-danger);
+}
+
+.estudiante-material-card__icon.is-success {
+  background: var(--pastel-success-100);
+  color: var(--color-success);
+}
+
+.estudiante-material-card__icon.is-accent {
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+}
+
+.estudiante-material-card__icon.is-secondary {
+  background: var(--pastel-secondary-100);
+  color: var(--color-secondary);
+}
+
+.estudiante-material-card__icon.is-primary {
+  background: var(--pastel-primary-100);
+  color: var(--color-primary);
+}
+
+.estudiante-material-card__icon.is-neutral {
+  background: var(--pastel-neutral-100);
+  color: var(--color-neutral);
+}
+
+.estudiante-material-card__title {
+  flex: 1;
+  min-width: 0;
+}
+
+.estudiante-material-card__title h3 {
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.estudiante-material-card__title small {
+  display: block;
+  margin-top: 3px;
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.estudiante-material-card__head > .badge {
+  flex: 0 0 auto;
+}
+
+.estudiante-material-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 9px 11px;
+  border-radius: var(--radius-sm);
+  background: var(--pastel-neutral-50);
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.estudiante-material-card__meta > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+}
+
+.estudiante-material-card__meta b {
+  font-weight: 700;
+  color: var(--text-secondary);
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.estudiante-material-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.estudiante-material-card__content small {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.estudiante-material-card__content strong {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.estudiante-material-card__content .muted {
+  font-size: 11px;
+}
+
+.estudiante-material-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.estudiante-material-card__course {
+  min-width: 0;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.estudiante-material-card__actions .btn {
+  flex: 0 0 auto;
+}
+
+/* ==========================================================================
+   ESTUDIANTE — COMUNICADOS
+   ========================================================================== */
+
+.estudiante-announcement-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.estudiante-announcement {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 17px 20px;
+  border-bottom: 1px solid var(--pastel-neutral-100);
+}
+
+.estudiante-announcement:last-child {
+  border-bottom: 0;
+}
+
+.estudiante-announcement__icon {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+}
+
+.estudiante-announcement__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.estudiante-announcement__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 9px;
+}
+
+.estudiante-announcement__author {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.estudiante-announcement__author > span:last-child {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.estudiante-announcement__author strong {
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.estudiante-announcement__author small {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.estudiante-announcement__head .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex: 0 0 auto;
+}
+
+.estudiante-announcement__content {
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.estudiante-announcement__foot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 9px;
+  font-size: 9.5px;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   ESTUDIANTE — BOLETA
+   ========================================================================== */
+
+.estudiante-boleta-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 20px 22px;
+}
+
+.estudiante-boleta-head__identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.estudiante-boleta-head__avatar {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: var(--pastel-primary-100);
+  color: var(--color-primary);
+}
+
+.estudiante-boleta-head__identity h3 {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.estudiante-boleta-head__identity p {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 3px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.estudiante-boleta-head__situation {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.estudiante-boleta-head__situation small {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.estudiante-boleta-table .estudiante-boleta-col {
+  text-align: center;
+}
+
+.estudiante-boleta-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 46px;
+  padding: 4px 9px;
+  border-radius: var(--radius-full);
+  background: var(--pastel-neutral-100);
+  color: var(--color-neutral);
+  font-size: 11.5px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.estudiante-boleta-value.is-success {
+  background: var(--pastel-success-100);
+  color: var(--color-success);
+}
+
+.estudiante-boleta-value.is-info {
+  background: var(--pastel-info-100);
+  color: var(--color-info);
+}
+
+.estudiante-boleta-value.is-accent {
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+}
+
+.estudiante-boleta-value.is-danger {
+  background: var(--pastel-danger-100);
+  color: var(--color-danger);
+}
+
+.estudiante-boleta-value.is-neutral {
+  background: var(--pastel-neutral-100);
+  color: var(--color-neutral);
+}
+
+/* ==========================================================================
+   RESPONSIVE — ESTUDIANTE
+   ========================================================================== */
+
+@media (max-width: 1240px) {
+
+  .estudiante-course-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .estudiante-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+
+  .estudiante-material-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .estudiante-grade-unit__head {
+    flex-wrap: wrap;
+  }
+
+  .estudiante-grade-criteria {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 760px) {
+
+  .estudiante-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .estudiante-plan-group__head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .estudiante-unit-card__head {
+    flex-wrap: wrap;
+  }
+
+  .estudiante-unit-card__head > .badge {
+    order: 3;
+  }
+
+  .estudiante-attendance-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .estudiante-announcement {
+    flex-wrap: wrap;
+  }
+
+  .estudiante-announcement__head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .estudiante-boleta-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .estudiante-boleta-head__situation {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+
+  .estudiante-course-card__metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .estudiante-course-card__actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .estudiante-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .estudiante-plan-list {
+    padding: 10px;
+  }
+
+  .estudiante-unit-card__head {
+    padding: 12px;
+  }
+
+  .estudiante-unit-card__meta {
+    padding: 0 12px 10px;
+    gap: 8px;
+  }
+
+  .estudiante-unit-card__contents {
+    padding: 12px;
+  }
+
+  .estudiante-grade-unit {
+    padding: 10px;
+  }
+
+  .estudiante-grade-criterion {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .estudiante-grade-course__score {
+    align-items: flex-start;
+  }
+
+  .estudiante-material-card__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .estudiante-material-card__actions .btn {
+    justify-content: center;
+  }
+
+  .estudiante-material-card__course {
+    text-align: center;
+  }
+
+  .estudiante-boleta-head {
+    padding: 16px;
+  }
+}
+
+/* ==========================================================================
+   IMPRESIÓN — BOLETA
+   ========================================================================== */
+
+@media print {
+
+  .estudiante .sidebar,
+  .estudiante .topbar,
+  .estudiante .page__actions,
+  .estudiante .toast,
+  .estudiante .notif-panel {
+    display: none !important;
+  }
+
+  .estudiante {
+    background: #ffffff;
+  }
+
+  .estudiante .admin__main {
+    margin-left: 0;
+  }
+
+  .estudiante .admin__content {
+    padding: 0;
+    max-width: none;
+  }
+
+  .estudiante .estudiante-boleta .info-strip {
+    display: none;
+  }
+
+  .estudiante .estudiante-boleta .card {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+}

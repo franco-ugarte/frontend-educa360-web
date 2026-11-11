@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./adminstyles.css";
 import {
   Bell,
+  CalendarClock,
   CalendarDays,
   ChevronRight,
   CircleCheck,
@@ -36,6 +37,7 @@ import UsersView from "./views/UsersView";
 import AcademicView from "./views/AcademicView";
 import SectionsView from "./views/SectionsView";
 import CoursesView from "./views/CoursesView";
+import SchedulesView from "./views/SchedulesView";
 import SubjectsView from "./views/SubjectsView";
 import AnnouncementsView from "./views/AnnouncementsView";
 import NotificationsView from "../../components/panel/NotificationsView";
@@ -52,6 +54,7 @@ const NAV = [
       { key: "academico", label: "Año escolar", icon: CalendarDays },
       { key: "secciones", label: "Secciones", icon: School },
       { key: "cursos", label: "Cursos", icon: GraduationCap },
+      { key: "horarios", label: "Horarios", icon: CalendarClock },
       { key: "materias", label: "Materias", icon: LibraryBig },
       { key: "comunicados", label: "Comunicados", icon: Megaphone },
     ],
@@ -68,6 +71,7 @@ const VIEW_META = {
   academico: { title: "Año escolar", subtitle: "Años, bimestres y estados del calendario académico." },
   secciones: { title: "Secciones", subtitle: "Grupos de alumnos por grado y año escolar." },
   cursos: { title: "Cursos", subtitle: "Materia, sección y docente asignado." },
+  horarios: { title: "Horarios", subtitle: "Semana de cada sección y plantilla de sus cursos." },
   materias: { title: "Materias", subtitle: "Catálogo institucional de lo que se enseña." },
   comunicados: { title: "Comunicados", subtitle: "Mensajes generales o dirigidos a una sección." },
   notificaciones: { title: "Notificaciones", subtitle: "Avisos dirigidos a tu cuenta." },
@@ -473,6 +477,10 @@ export default function AdminPage() {
 
               {view === "cursos" ? (
                 <CoursesView data={data} onReload={() => loadCore({ silent: true })} showToast={showToast} />
+              ) : null}
+
+              {view === "horarios" ? (
+                <SchedulesView data={data} showToast={showToast} />
               ) : null}
 
               {view === "materias" ? (

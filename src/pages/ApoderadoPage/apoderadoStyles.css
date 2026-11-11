@@ -1,0 +1,2434 @@
+/* ==========================================================================
+   APODERADO — Estilos exclusivos de ApoderadoPage y sus vistas.
+   Se importan desde pages/ApoderadoPage/ApoderadoPage.jsx.
+   El armazón del panel (sidebar, topbar, tarjetas, tablas, formularios,
+   modales, avisos) vive en styles/panel.css y App.css: aquí solo se
+   sobreescribe lo propio del rol.
+   Todos los derivados de color son tonos pastel declarados en App.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   APODERADO — ESTRUCTURA Y UTILIDADES
+   ========================================================================== */
+
+.sidebar__badge--apoderado {
+  background: rgba(14, 138, 95, 0.16);
+  border-color: rgba(191, 232, 212, 0.28);
+  color: var(--pastel-success-200);
+}
+
+.apoderado-no-matricula {
+  margin-top: 0;
+}
+
+.apoderado .page__actions .select {
+  width: auto;
+  min-width: 190px;
+}
+
+.apoderado-cell-right {
+  text-align: right;
+}
+
+.apoderado-cell-clamp {
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.apoderado-inline-empty {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 14px 16px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--pastel-neutral-50);
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.apoderado-plan-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  border-radius: var(--radius-full);
+  background: var(--pastel-primary-50);
+  border: 1px solid var(--pastel-primary-200);
+  color: var(--text-secondary);
+  font-size: 10.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ---- Nota / promedio ---- */
+
+.apoderado-note {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 56px;
+  padding: 5px 11px;
+  border-radius: var(--radius-full);
+  background: var(--pastel-neutral-100);
+  color: var(--color-neutral);
+  font-size: 13px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.apoderado-note.is-success {
+  background: var(--pastel-success-100);
+  color: var(--color-success);
+}
+
+.apoderado-note.is-info {
+  background: var(--pastel-info-100);
+  color: var(--color-info);
+}
+
+.apoderado-note.is-accent {
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+}
+
+.apoderado-note.is-danger {
+  background: var(--pastel-danger-100);
+  color: var(--color-danger);
+}
+
+.apoderado-note.is-neutral {
+  background: var(--pastel-neutral-100);
+  color: var(--color-neutral);
+}
+
+/* ---- Punto/icono de curso con tonos pastel ---- */
+
+.apoderado-course-dot,
+.apoderado-course-card__icon,
+.apoderado-metric__icon {
+  display: grid;
+  place-items: center;
+  background: var(--pastel-neutral-100);
+  color: var(--color-neutral);
+}
+
+.apoderado-course-dot {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  border-radius: var(--radius-xs);
+}
+
+.apoderado-course-card__icon {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  border-radius: var(--radius-md);
+}
+
+.apoderado-metric__icon {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-xs);
+}
+
+.apoderado-course-dot.is-primary,
+.apoderado-course-card__icon.is-primary,
+.apoderado-metric__icon.is-primary {
+  background: var(--pastel-primary-100);
+  color: var(--color-secondary);
+}
+
+.apoderado-course-dot.is-secondary,
+.apoderado-course-card__icon.is-secondary,
+.apoderado-metric__icon.is-secondary {
+  background: var(--pastel-secondary-100);
+  color: var(--color-secondary);
+}
+
+.apoderado-course-dot.is-accent,
+.apoderado-course-card__icon.is-accent,
+.apoderado-metric__icon.is-accent {
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+}
+
+.apoderado-course-dot.is-success,
+.apoderado-course-card__icon.is-success,
+.apoderado-metric__icon.is-success {
+  background: var(--pastel-success-100);
+  color: var(--color-success);
+}
+
+.apoderado-course-dot.is-info,
+.apoderado-course-card__icon.is-info,
+.apoderado-metric__icon.is-info {
+  background: var(--pastel-info-100);
+  color: var(--color-info);
+}
+
+.apoderado-course-dot.is-neutral,
+.apoderado-course-card__icon.is-neutral,
+.apoderado-metric__icon.is-neutral {
+  background: var(--pastel-neutral-100);
+  color: var(--color-neutral);
+}
+
+/* ---- Selector de representado en la barra superior ---- */
+
+.topbar__child {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 7px;
+  border: 1px solid var(--pastel-success-200);
+  border-radius: var(--radius-full);
+  background: var(--pastel-success-50);
+  color: var(--text-primary);
+  text-align: left;
+  transition: all var(--transition);
+}
+
+.topbar__child:hover {
+  background: var(--pastel-success-100);
+}
+
+.topbar__child > span:last-child {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.topbar__child strong {
+  font-size: 11.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.topbar__child small {
+  font-size: 9.5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   APODERADO — SELECTOR DE REPRESENTADO (SIDEBAR)
+   ========================================================================== */
+
+.apoderado-child-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.apoderado-child-picker__head {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.apoderado-child-picker__select {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-sm);
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--color-white);
+  font-size: 12px;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+  transition: border-color var(--transition), background-color var(--transition);
+}
+
+.apoderado-child-picker__select:focus {
+  border-color: var(--pastel-success-200);
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.apoderado-child-picker__select option {
+  background: #241833;
+  color: var(--color-white);
+}
+
+.apoderado-child-picker__empty {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.apoderado-child-picker__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.56);
+}
+
+.apoderado-child-picker__flag {
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: rgba(245, 158, 11, 0.18);
+  border: 1px solid rgba(245, 158, 11, 0.28);
+  color: var(--pastel-accent-300);
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   APODERADO — RESUMEN
+   ========================================================================== */
+
+.apoderado-bimestre-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.apoderado-bimestre-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  border-radius: var(--radius-full);
+  background: var(--pastel-secondary-50);
+  border: 1px solid var(--pastel-secondary-200);
+  color: var(--color-secondary);
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.apoderado-overview-note {
+  margin-top: 14px;
+}
+
+/* ==========================================================================
+   APODERADO — MIS REPRESENTADOS
+   ========================================================================== */
+
+.apoderado-children-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 18px;
+}
+
+.apoderado-child-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  min-width: 0;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.apoderado-child-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--pastel-success-200);
+  box-shadow: var(--shadow-md);
+}
+
+.apoderado-child-card.is-selected {
+  border-color: var(--pastel-success-200);
+  box-shadow: 0 0 0 2px var(--pastel-success-100), var(--shadow-sm);
+}
+
+.apoderado-child-card__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+}
+
+.apoderado-child-card__avatar {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--pastel-success-100), var(--pastel-primary-100));
+  color: var(--color-secondary);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.apoderado-child-card__title {
+  flex: 1;
+  min-width: 0;
+}
+
+.apoderado-child-card__title h3 {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.apoderado-child-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 7px;
+}
+
+.apoderado-child-card__meta {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--pastel-neutral-50);
+  border: 1px solid var(--border-color);
+}
+
+.apoderado-child-card__meta > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  font-size: 11.5px;
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.apoderado-child-card__meta svg {
+  flex: 0 0 auto;
+  color: var(--color-secondary);
+}
+
+.apoderado-child-card__status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 2px;
+}
+
+.apoderado-child-card__status-label {
+  font-size: 9.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+}
+
+.apoderado-child-card__actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+  margin-top: auto;
+}
+
+/* ==========================================================================
+   APODERADO — CURSOS
+   ========================================================================== */
+
+.apoderado-course-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.apoderado-course-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  min-width: 0;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.apoderado-course-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--pastel-primary-200);
+  box-shadow: var(--shadow-md);
+}
+
+.apoderado-course-card__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.apoderado-course-card__title {
+  flex: 1;
+  min-width: 0;
+}
+
+.apoderado-course-card__title h3 {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.apoderado-course-card__title p {
+  margin-top: 2px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+.apoderado-course-card__owner {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 7px;
+  padding: 4px 9px;
+  border-radius: var(--radius-full);
+  background: var(--pastel-success-50);
+  border: 1px solid var(--pastel-success-200);
+  color: var(--color-success);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.apoderado-course-card__metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.apoderado-course-card__metrics > div {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: 0 9px;
+  padding: 11px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--pastel-neutral-50);
+  min-width: 0;
+}
+
+.apoderado-course-card__metrics > div > small {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.apoderado-course-card__metrics > div > strong {
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.apoderado-course-card__metrics .apoderado-metric__icon {
+  grid-row: 1 / span 2;
+}
+
+.apoderado-course-card__units {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.apoderado-course-card__label {
+  font-size: 9.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+}
+
+.apoderado-unit-chip {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xs);
+  background: var(--color-white);
+  min-width: 0;
+}
+
+.apoderado-unit-chip b {
+  flex: 0 0 auto;
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--color-secondary);
+  background: var(--pastel-secondary-100);
+  border-radius: var(--radius-full);
+  padding: 2px 7px;
+}
+
+.apoderado-unit-chip > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.apoderado-unit-chip strong {
+  font-size: 11.5px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.apoderado-unit-chip small {
+  font-size: 10px;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.apoderado-unit-chip__contents {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: var(--radius-full);
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.apoderado-course-card__empty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 12px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--pastel-neutral-50);
+  color: var(--text-muted);
+  font-size: 11.5px;
+}
+
+.apoderado-course-card__actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+  margin-top: auto;
+}
+
+.apoderado-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 11.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: all var(--transition);
+}
+
+.apoderado-action.is-primary {
+  background: var(--pastel-primary-100);
+  color: var(--color-secondary);
+  border-color: var(--pastel-primary-200);
+}
+
+.apoderado-action.is-primary:hover {
+  background: var(--pastel-primary-200);
+}
+
+.apoderado-action.is-secondary {
+  background: var(--pastel-secondary-100);
+  color: var(--color-secondary);
+  border-color: var(--pastel-secondary-200);
+}
+
+.apoderado-action.is-secondary:hover {
+  background: var(--pastel-secondary-200);
+}
+
+.apoderado-action.is-accent {
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+  border-color: var(--pastel-accent-200);
+}
+
+.apoderado-action.is-accent:hover {
+  background: var(--pastel-accent-200);
+}
+
+/* ==========================================================================
+   APODERADO — PLANIFICACIÓN
+   ========================================================================== */
+
+.apoderado-plan-toolbar {
+  justify-content: flex-start;
+}
+
+.apoderado-plan-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.apoderado-plan-group {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.apoderado-plan-group__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--pastel-primary-100);
+  background: var(--pastel-primary-50);
+}
+
+.apoderado-plan-group__head h3 {
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--color-secondary);
+}
+
+.apoderado-plan-group__head p {
+  margin-top: 2px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.apoderado-plan-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+}
+
+.apoderado-unit-number {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--pastel-primary-100);
+  color: var(--color-secondary);
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.apoderado-unit-card {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  overflow: hidden;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.apoderado-unit-card.is-open {
+  border-color: var(--pastel-secondary-200);
+  box-shadow: var(--shadow-xs);
+}
+
+.apoderado-unit-card__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+}
+
+.apoderado-unit-card__title {
+  flex: 1;
+  min-width: 0;
+}
+
+.apoderado-unit-card__title h4 {
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.apoderado-unit-card__title p {
+  margin-top: 3px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.apoderado-unit-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 0 16px 12px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.apoderado-unit-card__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.apoderado-unit-card__contents {
+  padding: 14px 16px 16px;
+  border-top: 1px solid var(--pastel-neutral-100);
+  background: var(--pastel-neutral-50);
+}
+
+.apoderado-content-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.apoderado-content-row {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+}
+
+.apoderado-content-row__order {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-full);
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+  font-size: 10.5px;
+  font-weight: 800;
+}
+
+.apoderado-content-row strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.apoderado-content-row small {
+  display: block;
+  margin-top: 2px;
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.apoderado-content-row em {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 5px;
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--color-secondary);
+}
+
+/* ==========================================================================
+   APODERADO — CALIFICACIONES
+   ========================================================================== */
+
+.apoderado-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.apoderado-summary-grid .stat-card__icon--danger {
+  background: var(--pastel-danger-100);
+  color: var(--color-danger);
+}
+
+.apoderado-grade-courses {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.apoderado-grade-course .card__sub svg {
+  vertical-align: -2px;
+}
+
+.apoderado-grade-course__title {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+}
+
+.apoderado-grade-course__score {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  flex: 0 0 auto;
+}
+
+.apoderado-grade-course__score small {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.apoderado-grade-units {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.apoderado-grade-unit {
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--pastel-neutral-50);
+}
+
+.apoderado-grade-unit__head {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.apoderado-grade-unit__title {
+  flex: 1;
+  min-width: 0;
+}
+
+.apoderado-grade-unit__title strong {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.apoderado-grade-unit__title small {
+  display: block;
+  margin-top: 2px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.apoderado-grade-criteria {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 10px;
+  padding-left: 45px;
+}
+
+.apoderado-grade-criterion {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+}
+
+.apoderado-grade-criterion small {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.apoderado-grade-criterion strong {
+  font-size: 12.5px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-neutral);
+}
+
+.apoderado-grade-criterion strong.is-success {
+  color: var(--color-success);
+}
+
+.apoderado-grade-criterion strong.is-info {
+  color: var(--color-info);
+}
+
+.apoderado-grade-criterion strong.is-accent {
+  color: var(--color-accent-deep);
+}
+
+.apoderado-grade-criterion strong.is-danger {
+  color: var(--color-danger);
+}
+
+.apoderado-grade-criterion strong.is-neutral {
+  color: var(--color-neutral);
+}
+
+/* ==========================================================================
+   APODERADO — ASISTENCIA
+   ========================================================================== */
+
+.apoderado-attendance-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.apoderado-attendance-percent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 15px;
+  border-radius: var(--radius-full);
+  background: var(--pastel-neutral-100);
+  color: var(--color-neutral);
+  font-size: 18px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.apoderado-attendance-percent.is-success {
+  background: var(--pastel-success-100);
+  color: var(--color-success);
+}
+
+.apoderado-attendance-percent.is-info {
+  background: var(--pastel-info-100);
+  color: var(--color-info);
+}
+
+.apoderado-attendance-percent.is-accent {
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+}
+
+.apoderado-attendance-percent.is-danger {
+  background: var(--pastel-danger-100);
+  color: var(--color-danger);
+}
+
+.apoderado-attendance-bar {
+  height: 11px;
+  margin-top: 14px;
+  border-radius: var(--radius-full);
+  background: var(--pastel-neutral-100);
+  overflow: hidden;
+}
+
+.apoderado-attendance-bar__fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-full);
+  min-width: 3px;
+  transition: width 0.4s ease;
+  background: var(--color-info);
+}
+
+.apoderado-attendance-bar__fill.is-success {
+  background: var(--color-success);
+}
+
+.apoderado-attendance-bar__fill.is-info {
+  background: var(--color-info);
+}
+
+.apoderado-attendance-bar__fill.is-accent {
+  background: var(--color-accent);
+}
+
+.apoderado-attendance-bar__fill.is-danger {
+  background: var(--color-danger);
+}
+
+.apoderado-attendance-breakdown {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-top: 13px;
+}
+
+.apoderado-attendance-breakdown > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: var(--radius-full);
+  font-size: 10.5px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.apoderado-attendance-breakdown .is-present {
+  background: var(--pastel-success-100);
+  color: var(--color-success);
+}
+
+.apoderado-attendance-breakdown .is-late {
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+}
+
+.apoderado-attendance-breakdown .is-justified {
+  background: var(--pastel-info-100);
+  color: var(--color-info);
+}
+
+.apoderado-attendance-breakdown .is-absent {
+  background: var(--pastel-danger-100);
+  color: var(--color-danger);
+}
+
+.apoderado-attendance-summary .alert {
+  margin-top: 14px;
+}
+
+.apoderado-attendance-date {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.apoderado-attendance-date strong {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.apoderado-attendance-date small {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.apoderado-attendance-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.apoderado-attendance-ticket {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 7px;
+  font-size: 9px;
+}
+
+/* ==========================================================================
+   APODERADO — MATERIALES
+   ========================================================================== */
+
+.apoderado-material-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 16px;
+}
+
+.apoderado-material-card {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  padding: 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  min-width: 0;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.apoderado-material-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--pastel-info-200);
+  box-shadow: var(--shadow-md);
+}
+
+.apoderado-material-card__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+}
+
+.apoderado-material-card__icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--pastel-neutral-100);
+  color: var(--color-neutral);
+}
+
+.apoderado-material-card__icon.is-danger {
+  background: var(--pastel-danger-100);
+  color: var(--color-danger);
+}
+
+.apoderado-material-card__icon.is-success {
+  background: var(--pastel-success-100);
+  color: var(--color-success);
+}
+
+.apoderado-material-card__icon.is-accent {
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+}
+
+.apoderado-material-card__icon.is-secondary {
+  background: var(--pastel-secondary-100);
+  color: var(--color-secondary);
+}
+
+.apoderado-material-card__icon.is-primary {
+  background: var(--pastel-primary-100);
+  color: var(--color-secondary);
+}
+
+.apoderado-material-card__icon.is-neutral {
+  background: var(--pastel-neutral-100);
+  color: var(--color-neutral);
+}
+
+.apoderado-material-card__title {
+  flex: 1;
+  min-width: 0;
+}
+
+.apoderado-material-card__title h3 {
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.apoderado-material-card__title small {
+  display: block;
+  margin-top: 3px;
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.apoderado-material-card__head > .badge {
+  flex: 0 0 auto;
+}
+
+.apoderado-material-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 9px 11px;
+  border-radius: var(--radius-sm);
+  background: var(--pastel-neutral-50);
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.apoderado-material-card__meta > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+}
+
+.apoderado-material-card__meta b {
+  font-weight: 700;
+  color: var(--text-secondary);
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.apoderado-material-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.apoderado-material-card__content small {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.apoderado-material-card__content strong {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.apoderado-material-card__content .muted {
+  font-size: 11px;
+}
+
+.apoderado-material-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.apoderado-material-card__course {
+  min-width: 0;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.apoderado-material-card__actions .btn {
+  flex: 0 0 auto;
+}
+
+/* ==========================================================================
+   APODERADO — COMUNICADOS
+   ========================================================================== */
+
+.apoderado-announcement-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.apoderado-announcement {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  padding: 17px 20px;
+  border-bottom: 1px solid var(--pastel-neutral-100);
+}
+
+.apoderado-announcement:last-child {
+  border-bottom: 0;
+}
+
+.apoderado-announcement__icon {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+}
+
+.apoderado-announcement__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.apoderado-announcement__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 9px;
+}
+
+.apoderado-announcement__author {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.apoderado-announcement__author > span:last-child {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.apoderado-announcement__author strong {
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.apoderado-announcement__author small {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.apoderado-announcement__head .badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex: 0 0 auto;
+}
+
+.apoderado-announcement__content {
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.apoderado-announcement__foot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 9px;
+  font-size: 9.5px;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   APODERADO — BOLETA
+   ========================================================================== */
+
+.apoderado-boleta-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 20px 22px;
+}
+
+.apoderado-boleta-head__identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.apoderado-boleta-head__avatar {
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: var(--pastel-success-100);
+  color: var(--color-success);
+}
+
+.apoderado-boleta-head__identity h3 {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.apoderado-boleta-head__identity p {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 3px;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.apoderado-boleta-head__situation {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.apoderado-boleta-head__situation small {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.apoderado-boleta-actions {
+  align-items: center;
+}
+
+.apoderado-boleta-table .apoderado-boleta-col {
+  text-align: center;
+}
+
+.apoderado-boleta-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 46px;
+  padding: 4px 9px;
+  border-radius: var(--radius-full);
+  background: var(--pastel-neutral-100);
+  color: var(--color-neutral);
+  font-size: 11.5px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.apoderado-boleta-value.is-success {
+  background: var(--pastel-success-100);
+  color: var(--color-success);
+}
+
+.apoderado-boleta-value.is-info {
+  background: var(--pastel-info-100);
+  color: var(--color-info);
+}
+
+.apoderado-boleta-value.is-accent {
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+}
+
+.apoderado-boleta-value.is-danger {
+  background: var(--pastel-danger-100);
+  color: var(--color-danger);
+}
+
+.apoderado-boleta-value.is-neutral {
+  background: var(--pastel-neutral-100);
+  color: var(--color-neutral);
+}
+
+/* ==========================================================================
+   APODERADO — JUSTIFICACIONES
+   ========================================================================== */
+
+.apoderado-ticket-stats {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.apoderado-ticket-scope-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  justify-content: center;
+  padding: 11px 13px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--pastel-neutral-50);
+}
+
+.apoderado-ticket-scope-summary strong {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.apoderado-ticket-scope-summary small {
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.apoderado-block-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.apoderado-block-option {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  color: var(--text-primary);
+  text-align: left;
+  transition: all var(--transition);
+}
+
+.apoderado-block-option:hover:not(:disabled) {
+  border-color: var(--pastel-primary-200);
+  background: var(--pastel-primary-50);
+}
+
+.apoderado-block-option.is-active {
+  border-color: var(--pastel-secondary-200);
+  background: var(--pastel-secondary-50);
+  box-shadow: 0 0 0 1px var(--pastel-secondary-200);
+}
+
+.apoderado-block-option > svg:last-child {
+  flex: 0 0 auto;
+  color: var(--color-secondary);
+}
+
+.apoderado-block-option__icon {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-xs);
+  background: var(--pastel-primary-100);
+  color: var(--color-secondary);
+}
+
+.apoderado-block-option.is-active .apoderado-block-option__icon {
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+}
+
+.apoderado-block-option__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.apoderado-block-option__text strong {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.apoderado-block-option__text small {
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.apoderado-day-records {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 12px 13px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--pastel-neutral-50);
+}
+
+.apoderado-day-records__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.apoderado-day-record {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 9px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xs);
+  background: var(--color-white);
+}
+
+.apoderado-day-record b {
+  flex: 1;
+  min-width: 0;
+  font-size: 11.5px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.apoderado-day-record small {
+  flex: 0 0 auto;
+  font-size: 10px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.apoderado-day-record > .badge {
+  flex: 0 0 auto;
+  font-size: 9px;
+}
+
+.apoderado-ticket-resolution {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* ---- Detalle del ticket y sustento ---- */
+
+.student-file__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 11px 13px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--pastel-neutral-50);
+  min-width: 0;
+}
+
+.info-block__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.info-block strong {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+.ticket-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ticket-detail__motivo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 13px 15px;
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  background: var(--pastel-accent-50);
+}
+
+.ticket-detail__motivo p {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.ticket-detail__sustento {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 13px 15px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--pastel-neutral-50);
+}
+
+.ticket-detail__link {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ticket-detail__link small {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.ticket-detail__resolution {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--pastel-neutral-50);
+}
+
+.apoderado-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-strong);
+}
+
+.apoderado-upload__drop {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 13px 14px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.apoderado-upload__drop:hover {
+  border-color: var(--pastel-secondary-200);
+  background: var(--pastel-secondary-50);
+}
+
+.apoderado-upload__drop > svg {
+  flex: 0 0 auto;
+  color: var(--color-secondary);
+}
+
+.apoderado-upload__drop > span {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.apoderado-upload__drop strong {
+  font-size: 12px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.apoderado-upload__drop small {
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.apoderado-upload__drop input {
+  display: none;
+}
+
+.apoderado-upload__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   RESPONSIVE — APODERADO
+   ========================================================================== */
+
+@media (max-width: 1320px) {
+
+  .topbar__child {
+    display: none;
+  }
+}
+
+@media (max-width: 1240px) {
+
+  .apoderado-course-grid,
+  .apoderado-children-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .apoderado-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .student-file__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ticket-detail__resolution {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+
+  .apoderado-material-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .apoderado-grade-unit__head {
+    flex-wrap: wrap;
+  }
+
+  .apoderado-grade-criteria {
+    padding-left: 0;
+  }
+
+  .apoderado-ticket-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+
+  .apoderado-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .apoderado-plan-group__head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .apoderado-unit-card__head {
+    flex-wrap: wrap;
+  }
+
+  .apoderado-unit-card__head > .badge {
+    order: 3;
+  }
+
+  .apoderado-attendance-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .apoderado-announcement {
+    flex-wrap: wrap;
+  }
+
+  .apoderado-announcement__head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .apoderado-boleta-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .apoderado-boleta-head__situation {
+    align-items: flex-start;
+  }
+
+  .apoderado-child-card__actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+
+  .student-file__grid,
+  .ticket-detail__resolution {
+    grid-template-columns: 1fr;
+  }
+
+  .apoderado-ticket-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+
+  .apoderado-course-card__metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .apoderado-course-card__actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .apoderado-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .apoderado-plan-list {
+    padding: 10px;
+  }
+
+  .apoderado-unit-card__head {
+    padding: 12px;
+  }
+
+  .apoderado-unit-card__meta {
+    padding: 0 12px 10px;
+    gap: 8px;
+  }
+
+  .apoderado-unit-card__contents {
+    padding: 12px;
+  }
+
+  .apoderado-grade-unit {
+    padding: 10px;
+  }
+
+  .apoderado-grade-criterion {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .apoderado-grade-course__score {
+    align-items: flex-start;
+  }
+
+  .apoderado-material-card__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .apoderado-material-card__actions .btn {
+    justify-content: center;
+  }
+
+  .apoderado-material-card__course {
+    text-align: center;
+  }
+
+  .apoderado-boleta-head {
+    padding: 16px;
+  }
+
+  .apoderado-child-card__actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   SEMÁFORO ACADÉMICO (solo APODERADO)
+   Escala 0–11 rojo · 12–16 ámbar · 17–20 verde.
+   Asistencia <70 % rojo · 70–84.99 % ámbar · ≥85 % verde.
+   El color final es el peor factor: se comunica con lámparas y etiquetas.
+   ========================================================================== */
+
+.semaforo-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 136px minmax(0, 1fr);
+  gap: 22px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--color-white);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.semaforo-card__visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 10px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  background: var(--pastel-neutral-50);
+}
+
+.semaforo-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--border-strong);
+}
+.semaforo-card--red {
+  border-color: var(--semaforo-red-border);
+}
+.semaforo-card--red::before {
+  background: var(--semaforo-red);
+}
+.semaforo-card--red .semaforo-card__visual {
+  border-color: var(--semaforo-red-border);
+  background: var(--semaforo-red-soft);
+}
+.semaforo-card--amber {
+  border-color: var(--semaforo-amber-border);
+}
+.semaforo-card--amber::before {
+  background: var(--color-accent);
+}
+.semaforo-card--amber .semaforo-card__visual {
+  border-color: var(--semaforo-amber-border);
+  background: var(--semaforo-amber-soft);
+}
+.semaforo-card--green {
+  border-color: var(--semaforo-green-border);
+}
+.semaforo-card--green::before {
+  background: var(--semaforo-green);
+}
+.semaforo-card--green .semaforo-card__visual {
+  border-color: var(--semaforo-green-border);
+  background: var(--semaforo-green-soft);
+}
+
+.semaforo-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 11px 10px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.4),
+    0 4px 14px rgba(30, 21, 42, 0.16);
+}
+
+.semaforo-lamp {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  transition:
+    background var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+.semaforo-lamp--red {
+  background: rgba(194, 59, 59, 0.26);
+}
+.semaforo-lamp--amber {
+  background: rgba(245, 158, 11, 0.22);
+}
+.semaforo-lamp--green {
+  background: rgba(14, 138, 95, 0.24);
+}
+
+.semaforo-lamp--red.is-on {
+  background: var(--semaforo-red);
+  border-color: var(--pastel-danger-200);
+  box-shadow:
+    0 0 0 4px rgba(194, 59, 59, 0.24),
+    0 0 18px rgba(194, 59, 59, 0.65);
+}
+.semaforo-lamp--amber.is-on {
+  background: var(--color-accent);
+  border-color: var(--pastel-accent-200);
+  box-shadow:
+    0 0 0 4px rgba(245, 158, 11, 0.22),
+    0 0 18px rgba(245, 158, 11, 0.6);
+}
+.semaforo-lamp--green.is-on {
+  background: var(--semaforo-green);
+  border-color: var(--pastel-success-200);
+  box-shadow:
+    0 0 0 4px rgba(14, 138, 95, 0.22),
+    0 0 18px rgba(14, 138, 95, 0.62);
+}
+
+.semaforo-card__caption {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: center;
+}
+.semaforo-card--red .semaforo-card__caption {
+  color: var(--semaforo-red);
+}
+.semaforo-card--amber .semaforo-card__caption {
+  color: var(--semaforo-amber);
+}
+.semaforo-card--green .semaforo-card__caption {
+  color: var(--semaforo-green);
+}
+
+.semaforo-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.semaforo-card__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+.semaforo-card__headline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.semaforo-card__headline h3 {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.semaforo-card__pill {
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+  background: var(--pastel-neutral-50);
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 800;
+}
+.semaforo-card--red .semaforo-card__pill {
+  border-color: var(--semaforo-red-border);
+  background: var(--semaforo-red-soft);
+  color: var(--semaforo-red);
+}
+.semaforo-card--amber .semaforo-card__pill {
+  border-color: var(--semaforo-amber-border);
+  background: var(--semaforo-amber-soft);
+  color: var(--semaforo-amber);
+}
+.semaforo-card--green .semaforo-card__pill {
+  border-color: var(--semaforo-green-border);
+  background: var(--semaforo-green-soft);
+  color: var(--semaforo-green);
+}
+
+.semaforo-card__text {
+  font-size: 12px;
+  color: var(--text-secondary);
+  max-width: 72ch;
+}
+
+.semaforo-factors {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+.semaforo-factor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--pastel-neutral-50);
+  min-width: 0;
+}
+.semaforo-factor__icon {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-xs);
+  background: var(--color-white);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+.semaforo-factor__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+.semaforo-factor__info small {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.semaforo-factor__info strong {
+  font-size: 16px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.semaforo-factor__info em {
+  font-style: normal;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.semaforo-factor__tag {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+  background: var(--color-white);
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.semaforo-factor.is-red {
+  border-color: var(--semaforo-red-border);
+  background: var(--semaforo-red-soft);
+}
+.semaforo-factor.is-red .semaforo-factor__icon,
+.semaforo-factor.is-red .semaforo-factor__tag {
+  border-color: var(--semaforo-red-border);
+  color: var(--semaforo-red);
+}
+.semaforo-factor.is-amber {
+  border-color: var(--semaforo-amber-border);
+  background: var(--semaforo-amber-soft);
+}
+.semaforo-factor.is-amber .semaforo-factor__icon,
+.semaforo-factor.is-amber .semaforo-factor__tag {
+  border-color: var(--semaforo-amber-border);
+  color: var(--semaforo-amber);
+}
+.semaforo-factor.is-green {
+  border-color: var(--semaforo-green-border);
+  background: var(--semaforo-green-soft);
+}
+.semaforo-factor.is-green .semaforo-factor__icon,
+.semaforo-factor.is-green .semaforo-factor__tag {
+  border-color: var(--semaforo-green-border);
+  color: var(--semaforo-green);
+}
+
+.semaforo-scale {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  margin-top: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.semaforo-scale__label {
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.semaforo-scale__sep {
+  width: 1px;
+  height: 11px;
+  background: var(--border-color);
+}
+.semaforo-scale span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.semaforo-scale i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: 0 0 7px;
+}
+.semaforo-scale i.is-red {
+  background: var(--semaforo-red);
+}
+.semaforo-scale i.is-amber {
+  background: var(--color-accent);
+}
+.semaforo-scale i.is-green {
+  background: var(--semaforo-green);
+}
+
+@media (max-width: 760px) {
+  .semaforo-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    padding: 16px;
+  }
+  .semaforo-card__visual {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 16px;
+    padding: 12px 14px;
+  }
+  .semaforo-stack {
+    flex-direction: row;
+  }
+  .semaforo-card__caption {
+    text-align: left;
+  }
+  .semaforo-factors {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ==========================================================================
+   IMPRESIÓN — BOLETA
+   ========================================================================== */
+
+@media print {
+
+  .apoderado .sidebar,
+  .apoderado .topbar,
+  .apoderado .page__actions,
+  .apoderado .toast,
+  .apoderado .notif-panel {
+    display: none !important;
+  }
+
+  .apoderado {
+    background: #ffffff;
+  }
+
+  .apoderado .admin__main {
+    margin-left: 0;
+  }
+
+  .apoderado .admin__content {
+    padding: 0;
+    max-width: none;
+  }
+
+  .apoderado .apoderado-boleta .info-strip {
+    display: none;
+  }
+
+  .apoderado .apoderado-boleta .card {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+}

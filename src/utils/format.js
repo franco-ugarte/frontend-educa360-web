@@ -72,6 +72,20 @@ export const DIA_LABELS = {
   SABADO: "Sábado",
 };
 
+export const UNIDAD_CLASS = {
+  BORRADOR: "badge--neutral",
+  PUBLICADA: "badge--success",
+};
+
+export const DIA_INDEX = {
+  LUNES: 1,
+  MARTES: 2,
+  MIERCOLES: 3,
+  JUEVES: 4,
+  VIERNES: 5,
+  SABADO: 6,
+};
+
 const dateFormatter = new Intl.DateTimeFormat("es-PE", {
   day: "2-digit",
   month: "short",
@@ -162,4 +176,19 @@ export function estadoLabel(estado) {
 export function percent(part, total) {
   if (!total) return 0;
   return Math.round((part / total) * 100);
+}
+
+export function formatNote(value) {
+  if (value === null || value === undefined || value === "") return "—";
+  const number = Number(value);
+  if (Number.isNaN(number)) return "—";
+  return number.toFixed(2);
+}
+
+export function formatBytes(bytes) {
+  const value = Number(bytes);
+  if (!Number.isFinite(value) || value <= 0) return "—";
+  if (value < 1024) return `${value} B`;
+  if (value < 1024 * 1024) return `${(value / 1024).toFixed(1)} KB`;
+  return `${(value / (1024 * 1024)).toFixed(1)} MB`;
 }

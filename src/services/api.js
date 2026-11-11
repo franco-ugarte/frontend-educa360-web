@@ -9,7 +9,6 @@ export const USER_KEY = "educa360.user";
 export const api = axios.create({
   baseURL: API_BASE,
   timeout: 25000,
-  headers: { "Content-Type": "application/json" },
 });
 
 api.interceptors.request.use((config) => {
@@ -17,6 +16,13 @@ api.interceptors.request.use((config) => {
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
+
+  // Si la petición lleva un FormData (archivos), borra cualquier Content-Type residual
+  // para que el navegador genere el multipart/form-data con su boundary correspondiente
+  if (config.data instanceof FormData) {
+    delete config.headers["Content-Type"];
+  }
+
   return config;
 });
 
@@ -171,6 +177,8 @@ export const adminService = {
   listarHorario: (id) => api.get(`/admin/cursos/${id}/horario`).then((r) => r.data),
   reemplazarHorario: (id, bloques) =>
     api.put(`/admin/cursos/${id}/horario`, { bloques }).then((r) => r.data),
+  listarHorarioSeccion: (seccionId) =>
+    api.get(`/admin/secciones/${seccionId}/horario`).then((r) => r.data),
 
   // Comunicados
   listarComunicados: (params = {}) =>
@@ -257,6 +265,150 @@ export const secretariaService = {
     api.get(`/secretaria/estudiantes/${id}/calificaciones`, { params }).then((r) => r.data),
   historialEstudiante: (id) =>
     api.get(`/secretaria/estudiantes/${id}/historial`).then((r) => r.data),
+};
+
+/* ------------------------------------------------------------------ */
+/* Docente                                                            */
+/* ------------------------------------------------------------------ */
+
+export const docenteService = {
+  // Cursos y horario
+  listarCursos: () => api.get("/docente/cursos").then((r) => r.data),
+  listarHorario: (cursoId) =>
+    api.get(`/docente/cursos/${cursoId}/horario`).then((r) => r.data),
+
+  // Planificación: unidades
+  listarUnidades: (cursoId) =>
+    api.get(`/docente/cursos/${cursoId}/unidades`).then((r) => r.data),
+  obtenerUnidad: (id) => api.get(`/docente/unidades/${id}`).then((r) => r.data),
+  crearUnidad: (cursoId, payload) =>
+    api.post(`/docente/cursos/${cursoId}/unidades`, payload).then((r) => r.data),
+  actualizarUnidad: (id, payload) =>
+    api.put(`/docente/unidades/${id}`, payload).then((r) => r.data),
+  eliminarUnidad: (id) => api.delete(`/docente/unidades/${id}`),
+  cambiarEstadoUnidad: (id, estado) =>
+    api.patch(`/docente/unidades/${id}/estado`, { estado }).then((r) => r.data),
+
+  // Planificación: contenidos
+  listarContenidos: (unidadId) =>
+    api.get(`/docente/unidades/${unidadId}/contenidos`).then((r) => r.data),
+  crearContenido: (unidadId, payload) =>
+    api.post(`/docente/unidades/${unidadId}/contenidos`, payload).then((r) => r.data),
+  actualizarContenido: (id, payload) =>
+    api.put(`/docente/contenidos/${id}`, payload).then((r) => r.data),
+  eliminarContenido: (id) => api.delete(`/docente/contenidos/${id}`),
+  reordenarContenidos: (unidadId, contenidoIds) =>
+    api.put(`/docente/unidades/${unidadId}/contenidos/orden`, { contenidoIds }).then((r) => r.data),
+
+  // Calificaciones
+  listarCalificacionesUnidad: (unidadId) =>
+    api.get(`/docente/unidades/${unidadId}/calificaciones`).then((r) => r.data),
+  registrarCalificaciones: (unidadId, calificaciones) =>
+    api.put(`/docente/unidades/${unidadId}/calificaciones`, { calificaciones }).then((r) => r.data),
+  eliminarCalificacion: (id) => api.delete(`/docente/calificaciones/${id}`),
+  actaCurso: (cursoId, bimestreId) =>
+    api.get(`/docente/cursos/${cursoId}/actas`, { params: { bimestreId } }).then((r) => r.data),
+
+  // Asistencia
+  listarAsistencia: (cursoId, bloqueId, fecha) =>
+    api
+      .get(`/docente/cursos/${cursoId}/asistencia`, { params: { bloqueId, fecha } })
+      .then((r) => r.data),
+  registrarAsistencia: (cursoId, payload) =>
+    api.put(`/docente/cursos/${cursoId}/asistencia`, payload).then((r) => r.data),
+
+  // Materiales
+  listarMateriales: (cursoId) =>
+    api.get(`/docente/cursos/${cursoId}/materiales`).then((r) => r.data),
+  crearMaterial: (cursoId, formData) =>
+    api.post(`/docente/cursos/${cursoId}/materiales`, formData).then((r) => r.data),
+  actualizarMaterial: (id, payload) =>
+    api.put(`/docente/materiales/${id}`, payload).then((r) => r.data),
+  reemplazarArchivoMaterial: (id, formData) =>
+    api.put(`/docente/materiales/${id}/archivo`, formData).then((r) => r.data),
+  cambiarPublicacionMaterial: (id, publicado) =>
+    api.patch(`/docente/materiales/${id}/publicacion`, { publicado }).then((r) => r.data),
+  eliminarMaterial: (id) => api.delete(`/docente/materiales/${id}`),
+  urlDescargaMaterial: (id) =>
+    api.get(`/materiales/${id}/download`).then((r) => r.data),
+
+  // Comunicados por sección
+  listarComunicados: (params = {}) =>
+    api.get("/docente/comunicados", { params }).then((r) => r.data),
+  crearComunicado: (payload) =>
+    api.post("/docente/comunicados", payload).then((r) => r.data),
+  actualizarComunicado: (id, payload) =>
+    api.put(`/docente/comunicados/${id}`, payload).then((r) => r.data),
+  eliminarComunicado: (id) => api.delete(`/docente/comunicados/${id}`),
+};
+
+/* ------------------------------------------------------------------ */
+/* Estudiante                                                         */
+/* ------------------------------------------------------------------ */
+
+export const estudianteService = {
+  // Identidad académica
+  miMatricula: () => api.get("/estudiante/matricula").then((r) => r.data),
+  listarCursos: () => api.get("/estudiante/cursos").then((r) => r.data),
+
+  // Contenido visible: sólo unidades PUBLICADA y materiales publicados
+  listarUnidades: (cursoId) =>
+    api.get(`/estudiante/cursos/${cursoId}/unidades`).then((r) => r.data),
+  listarMateriales: (cursoId) =>
+    api.get(`/estudiante/cursos/${cursoId}/materiales`).then((r) => r.data),
+  urlDescargaMaterial: (id) =>
+    api.get(`/materiales/${id}/download`).then((r) => r.data),
+
+  // Notas, asistencia y boleta propias
+  misCalificaciones: (params = {}) =>
+    api.get("/estudiante/calificaciones", { params }).then((r) => r.data),
+  misAsistencias: (params = {}) =>
+    api.get("/estudiante/asistencias", { params }).then((r) => r.data),
+  miBoleta: (params = {}) =>
+    api.get("/estudiante/boleta", { params }).then((r) => r.data),
+
+  // Comunicados generales y de su sección
+  listarComunicados: () =>
+    api.get("/estudiante/comunicados").then((r) => r.data),
+};
+
+/* ------------------------------------------------------------------ */
+/* Apoderado                                                          */
+/* ------------------------------------------------------------------ */
+
+export const apoderadoService = {
+  // Representados activos
+  listarHijos: () => api.get("/apoderado/hijos").then((r) => r.data),
+
+  // Datos académicos por hijo (el backend valida el vínculo)
+  calificaciones: (hijoId, params = {}) =>
+    api.get(`/apoderado/hijos/${hijoId}/calificaciones`, { params }).then((r) => r.data),
+  asistencias: (hijoId, params = {}) =>
+    api.get(`/apoderado/hijos/${hijoId}/asistencias`, { params }).then((r) => r.data),
+  boleta: (hijoId, params = {}) =>
+    api.get(`/apoderado/hijos/${hijoId}/boleta`, { params }).then((r) => r.data),
+
+  // Contenido visible por curso: solo unidades publicadas y materiales publicados
+  listarUnidades: (hijoId, cursoId) =>
+    api.get(`/apoderado/hijos/${hijoId}/cursos/${cursoId}/unidades`).then((r) => r.data),
+  listarMateriales: (hijoId, cursoId) =>
+    api.get(`/apoderado/hijos/${hijoId}/cursos/${cursoId}/materiales`).then((r) => r.data),
+  urlDescargaMaterial: (id) =>
+    api.get(`/materiales/${id}/download`).then((r) => r.data),
+
+  // Comunicados generales y de las secciones de los hijos activos
+  listarComunicados: () =>
+    api.get("/apoderado/comunicados").then((r) => r.data),
+
+  // Tickets de justificación
+  listarTickets: (hijoId, params = {}) =>
+    api.get(`/apoderado/hijos/${hijoId}/tickets`, { params }).then((r) => r.data),
+  crearTicket: (hijoId, payload) =>
+    api.post(`/apoderado/hijos/${hijoId}/tickets`, payload).then((r) => r.data),
+  subirSustento: (ticketId, formData) =>
+    api.post(`/apoderado/tickets/${ticketId}/sustento`, formData).then((r) => r.data),
+  urlSustento: (ticketId) =>
+    api.get(`/apoderado/tickets/${ticketId}/sustento`).then((r) => r.data),
 };
 
 /* ------------------------------------------------------------------ */

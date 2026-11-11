@@ -1,0 +1,1646 @@
+/* ==========================================================================
+   DOCENTE — Estilos exclusivos de DocentePage y sus vistas
+   Se importan desde pages/DocentePage/DocentePage.jsx
+   El armazón del panel (sidebar, topbar, tarjetas, tablas) vive en
+   styles/panel.css y solo se sobreescribe aquí lo propio del rol.
+   Todos los derivados de color son tonos pastel declarados en App.css.
+   ========================================================================== */
+
+/* ==========================================================================
+   DOCENTE — ESTRUCTURA
+   ========================================================================== */
+
+.sidebar__badge--docente {
+  background: rgba(245, 158, 11, 0.16);
+  border-color: rgba(253, 230, 138, 0.32);
+  color: var(--pastel-accent-200);
+}
+
+.nav-item__badge--alert {
+  background: var(--pastel-danger-200);
+  color: var(--color-danger);
+}
+
+/* ==========================================================================
+   DOCENTE — UTILIDADES
+   ========================================================================== */
+
+.docente-unit-number {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: var(--pastel-primary-100);
+  color: var(--color-secondary);
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.docente-toolbar-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.docente-toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.docente-inline-empty {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 14px 16px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.docente-form-readonly {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 11px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--pastel-neutral-50);
+}
+
+.docente-form-readonly span {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.docente-form-readonly strong {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.docente-audience {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--pastel-secondary-50);
+  border: 1px solid var(--pastel-secondary-200);
+  color: var(--color-secondary);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.docente-file-input {
+  padding: 9px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.docente-file-input::file-selector-button {
+  margin-right: 12px;
+  padding: 7px 12px;
+  border: 1px solid var(--pastel-secondary-200);
+  border-radius: var(--radius-xs);
+  background: var(--pastel-secondary-100);
+  color: var(--color-secondary);
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.docente-file-input::file-selector-button:hover {
+  background: var(--pastel-secondary-200);
+}
+
+/* ==========================================================================
+   DOCENTE — RESUMEN
+   ========================================================================== */
+
+.docente-agenda {
+  display: flex;
+  flex-direction: column;
+}
+
+.docente-agenda__item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--pastel-neutral-100);
+}
+
+.docente-agenda__item:last-child {
+  border-bottom: 0;
+}
+
+.docente-agenda__time {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  gap: 2px 6px;
+  min-width: 86px;
+  color: var(--color-secondary);
+}
+
+.docente-agenda__time svg {
+  grid-row: 1 / span 2;
+}
+
+.docente-agenda__time strong {
+  font-size: 13px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.docente-agenda__time small {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.docente-agenda__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.docente-agenda__body strong {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.docente-agenda__body small {
+  display: block;
+  margin-top: 2px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.docente-agenda__item .btn {
+  flex: 0 0 auto;
+}
+
+.docente-mini-course {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px dashed var(--pastel-neutral-200);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.docente-mini-course:hover {
+  background: var(--pastel-primary-50);
+}
+
+.docente-mini-course__arrow {
+  flex: 0 0 auto;
+  margin-left: auto;
+  align-self: center;
+  color: var(--text-muted);
+  transition: transform var(--transition), color var(--transition);
+}
+
+.docente-mini-course:hover .docente-mini-course__arrow {
+  transform: translateX(2px);
+  color: var(--color-secondary);
+}
+
+.docente-mini-course > span:nth-child(2) {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ==========================================================================
+   DOCENTE — MIS CURSOS
+   ========================================================================== */
+
+.docente-course-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.docente-course-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  min-width: 0;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.docente-course-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--pastel-primary-200);
+  box-shadow: var(--shadow-md);
+}
+
+.docente-course-card__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.docente-course-card__icon {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: var(--pastel-secondary-100);
+  color: var(--color-secondary);
+}
+
+.docente-course-card__title {
+  flex: 1;
+  min-width: 0;
+}
+
+.docente-course-card__title h3 {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.docente-course-card__title p {
+  margin-top: 2px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+.docente-course-card__metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.docente-course-card__metrics > div {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: 0 9px;
+  padding: 11px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--pastel-neutral-50);
+  min-width: 0;
+}
+
+.docente-course-card__metrics > div > small {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.docente-course-card__metrics > div > strong {
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.docente-course-card__metrics > div > strong em {
+  display: block;
+  font-style: normal;
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.docente-metric__icon {
+  grid-row: 1 / span 2;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-xs);
+}
+
+.docente-metric__icon--primary {
+  background: var(--pastel-primary-100);
+  color: var(--color-primary);
+}
+
+.docente-metric__icon--secondary {
+  background: var(--pastel-secondary-100);
+  color: var(--color-secondary);
+}
+
+.docente-metric__icon--accent {
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+}
+
+.docente-course-card__schedule {
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: var(--pastel-primary-50);
+  border: 1px solid var(--pastel-primary-100);
+}
+
+.docente-course-card__schedule-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.docente-course-card__schedule-head > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-secondary);
+}
+
+.docente-course-card__schedule-head > small {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.docente-schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.docente-schedule-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 9px;
+  border-radius: var(--radius-xs);
+  background: var(--color-white);
+}
+
+.docente-schedule-row__day {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.docente-schedule-row__time {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.docente-schedule-more {
+  display: inline-block;
+  margin-top: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+.docente-course-card__units {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.docente-unit-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xs);
+  background: var(--color-white);
+  min-width: 0;
+}
+
+.docente-unit-chip b {
+  flex: 0 0 auto;
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--color-secondary);
+  background: var(--pastel-secondary-100);
+  border-radius: var(--radius-full);
+  padding: 2px 7px;
+}
+
+.docente-unit-chip > span {
+  flex: 1;
+  min-width: 0;
+  font-size: 11.5px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.docente-unit-chip .badge {
+  flex: 0 0 auto;
+  font-size: 9px;
+  padding: 2px 7px;
+}
+
+.docente-course-card__empty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 12px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--pastel-neutral-50);
+  color: var(--text-muted);
+  font-size: 11.5px;
+}
+
+.docente-course-card__actions {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+  margin-top: auto;
+}
+
+.docente-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 8px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 11.5px;
+  font-weight: 700;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.docente-action--primary {
+  background: var(--pastel-primary-100);
+  color: var(--color-primary);
+  border-color: var(--pastel-primary-200);
+}
+
+.docente-action--primary:hover {
+  background: var(--pastel-primary-200);
+}
+
+.docente-action--success {
+  background: var(--pastel-success-100);
+  color: var(--color-success);
+  border-color: var(--pastel-success-200);
+}
+
+.docente-action--success:hover {
+  background: var(--pastel-success-200);
+}
+
+.docente-action--secondary {
+  background: var(--pastel-secondary-100);
+  color: var(--color-secondary);
+  border-color: var(--pastel-secondary-200);
+}
+
+.docente-action--secondary:hover {
+  background: var(--pastel-secondary-200);
+}
+
+.docente-action--accent {
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+  border-color: var(--pastel-accent-200);
+}
+
+.docente-action--accent:hover {
+  background: var(--pastel-accent-200);
+}
+
+/* ==========================================================================
+   DOCENTE — PLANIFICACIÓN
+   ========================================================================== */
+
+.docente-plan-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.docente-plan-group {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.docente-plan-group__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--pastel-primary-100);
+  background: var(--pastel-primary-50);
+}
+
+.docente-plan-group__head h3 {
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--color-primary);
+}
+
+.docente-plan-group__head p {
+  margin-top: 2px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.docente-plan-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+}
+
+.docente-unit-card {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  overflow: hidden;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.docente-unit-card.is-open {
+  border-color: var(--pastel-secondary-200);
+  box-shadow: var(--shadow-xs);
+}
+
+.docente-unit-card__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+}
+
+.docente-unit-card__title {
+  flex: 1;
+  min-width: 0;
+}
+
+.docente-unit-card__title h4 {
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.docente-unit-card__title p {
+  margin-top: 3px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.docente-unit-card__badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  flex: 0 0 auto;
+}
+
+.docente-unit-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: 0 0 auto;
+}
+
+.docente-unit-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 0 16px 12px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.docente-unit-card__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.docente-unit-card__contents {
+  padding: 14px 16px 16px;
+  border-top: 1px solid var(--pastel-neutral-100);
+  background: var(--pastel-neutral-50);
+}
+
+.docente-unit-card__contents-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.docente-unit-card__contents-head strong {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.docente-unit-card__contents-head small {
+  display: block;
+  margin-top: 2px;
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.docente-content-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.docente-content-row {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+}
+
+.docente-content-row__order {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-full);
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+  font-size: 10.5px;
+  font-weight: 800;
+}
+
+.docente-content-row__body {
+  min-width: 0;
+}
+
+.docente-content-row__body strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.docente-content-row__body small {
+  display: block;
+  margin-top: 2px;
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.docente-content-row__body em {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 5px;
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--color-secondary);
+}
+
+.docente-content-row__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/* ==========================================================================
+   DOCENTE — ASISTENCIA
+   ========================================================================== */
+
+.docente-attendance-toolbar-card {
+  padding: 18px 20px;
+}
+
+.docente-attendance-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) auto auto;
+  align-items: end;
+  gap: 14px;
+}
+
+.docente-attendance-toolbar__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 44px;
+  padding: 0 12px;
+  border-radius: var(--radius-sm);
+  background: var(--pastel-primary-50);
+  border: 1px solid var(--pastel-primary-100);
+  color: var(--color-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.docente-attendance-toolbar + .alert {
+  margin-top: 14px;
+}
+
+.docente-attendance-toolbar-card .alert + .alert {
+  margin-top: 10px;
+}
+
+.docente-attendance-summary {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.docente-attendance-summary__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: var(--radius-full);
+  font-size: 10.5px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.docente-attendance-summary__item.is-present {
+  background: var(--pastel-success-100);
+  color: var(--color-success);
+}
+
+.docente-attendance-summary__item.is-absent {
+  background: var(--pastel-danger-100);
+  color: var(--color-danger);
+}
+
+.docente-attendance-summary__item.is-pending {
+  background: var(--pastel-neutral-100);
+  color: var(--color-neutral);
+}
+
+.docente-attendance-summary__item.is-justified {
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+}
+
+.docente-attendance-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.docente-attendance-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--pastel-neutral-100);
+  flex-wrap: wrap;
+  transition: background var(--transition);
+}
+
+.docente-attendance-row:last-child {
+  border-bottom: 0;
+}
+
+.docente-attendance-row:hover {
+  background: var(--pastel-primary-50);
+}
+
+.docente-attendance-row.is-readonly {
+  background: var(--pastel-accent-50);
+}
+
+.docente-attendance-row__student {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 220px;
+  flex: 1;
+}
+
+.docente-attendance-row__student > span:nth-child(2) {
+  min-width: 0;
+}
+
+.docente-attendance-row__student strong {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.docente-attendance-row__student small {
+  display: block;
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.docente-attendance-row__student > .badge {
+  margin-left: 4px;
+}
+
+.docente-attendance-row__controls {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.docente-toggle {
+  display: inline-flex;
+  gap: 0;
+  padding: 3px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--pastel-neutral-50);
+}
+
+.docente-toggle__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-xs);
+  background: transparent;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  transition: all var(--transition);
+}
+
+.docente-toggle__btn:hover:not(:disabled) {
+  color: var(--text-primary);
+}
+
+.docente-toggle__btn.is-present.is-active {
+  background: var(--pastel-success-100);
+  border-color: var(--pastel-success-200);
+  color: var(--color-success);
+}
+
+.docente-toggle__btn.is-absent.is-active {
+  background: var(--pastel-danger-100);
+  border-color: var(--pastel-danger-200);
+  color: var(--color-danger);
+}
+
+.docente-toggle__btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.docente-attendance-row__obs {
+  width: 230px;
+  height: 38px;
+  font-size: 11.5px;
+}
+
+.docente-attendance-readonly {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 11px;
+  border-radius: var(--radius-full);
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.docente-attendance-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 14px 20px;
+  border-top: 1px solid var(--border-color);
+  background: var(--pastel-primary-50);
+}
+
+.docente-attendance-footer > span {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   DOCENTE — CALIFICACIONES
+   ========================================================================== */
+
+.docente-grade-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.docente-grade-summary > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: var(--radius-full);
+  background: var(--pastel-secondary-100);
+  color: var(--color-secondary);
+  font-size: 10.5px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.docente-grade-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.docente-grade-row {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--pastel-neutral-100);
+  transition: background var(--transition);
+}
+
+.docente-grade-row:last-child {
+  border-bottom: 0;
+}
+
+.docente-grade-row:hover {
+  background: var(--pastel-primary-50);
+}
+
+.docente-grade-row__student {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.docente-grade-row__student > span:nth-child(2) {
+  flex: 1;
+  min-width: 160px;
+}
+
+.docente-grade-row__student strong {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.docente-grade-row__student small {
+  display: block;
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.docente-average {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: var(--radius-full);
+  background: var(--pastel-success-100);
+  color: var(--color-success);
+}
+
+.docente-average.is-low {
+  background: var(--pastel-danger-100);
+  color: var(--color-danger);
+}
+
+.docente-average small {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+.docente-average strong {
+  font-size: 14px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.docente-grade-row__notes {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-left: 38px;
+}
+
+.docente-grade-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 6px 5px 11px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+}
+
+.docente-grade-note > span {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.docente-grade-note small {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  max-width: 130px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.docente-grade-note strong {
+  font-size: 13px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+}
+
+.docente-grade-note .icon-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-xs);
+}
+
+.docente-grade-note .icon-btn svg {
+  width: 13px;
+  height: 13px;
+}
+
+.docente-grade-empty {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 0;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.docente-grade-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.docente-grade-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--pastel-neutral-50);
+}
+
+.docente-grade-input > span {
+  min-width: 0;
+}
+
+.docente-grade-input strong {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.docente-grade-input small {
+  display: block;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.docente-grade-input .input {
+  width: 88px;
+  flex: 0 0 88px;
+  height: 38px;
+  text-align: center;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.docente-acta-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--pastel-neutral-100);
+  background: var(--pastel-primary-50);
+}
+
+.docente-acta-summary > span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--color-white);
+  border: 1px solid var(--border-color);
+  min-width: 0;
+}
+
+.docente-acta-summary small {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.docente-acta-summary strong {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.docente-acta-wrap {
+  max-height: 420px;
+  overflow: auto;
+}
+
+.docente-acta-wrap thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--pastel-neutral-50);
+}
+
+.docente-acta-value {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.docente-acta-value.is-final {
+  background: var(--pastel-primary-50);
+  color: var(--color-primary);
+  font-weight: 800;
+}
+
+/* ==========================================================================
+   DOCENTE — MATERIALES
+   ========================================================================== */
+
+.docente-material-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 16px;
+}
+
+.docente-material-card {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  padding: 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  min-width: 0;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+}
+
+.docente-material-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--pastel-primary-200);
+  box-shadow: var(--shadow-md);
+}
+
+.docente-material-card__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+}
+
+.docente-material-card__icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-sm);
+}
+
+.docente-material-card__icon--danger {
+  background: var(--pastel-danger-100);
+  color: var(--color-danger);
+}
+
+.docente-material-card__icon--success {
+  background: var(--pastel-success-100);
+  color: var(--color-success);
+}
+
+.docente-material-card__icon--accent {
+  background: var(--pastel-accent-100);
+  color: var(--color-accent-deep);
+}
+
+.docente-material-card__icon--secondary {
+  background: var(--pastel-secondary-100);
+  color: var(--color-secondary);
+}
+
+.docente-material-card__icon--primary {
+  background: var(--pastel-primary-100);
+  color: var(--color-primary);
+}
+
+.docente-material-card__icon--neutral {
+  background: var(--pastel-neutral-100);
+  color: var(--color-neutral);
+}
+
+.docente-material-card__title {
+  flex: 1;
+  min-width: 0;
+}
+
+.docente-material-card__title h3 {
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.docente-material-card__title small {
+  display: block;
+  margin-top: 3px;
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.docente-material-card__head > .badge {
+  flex: 0 0 auto;
+}
+
+.docente-material-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 9px 11px;
+  border-radius: var(--radius-sm);
+  background: var(--pastel-neutral-50);
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.docente-material-card__meta > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+}
+
+.docente-material-card__meta b {
+  font-weight: 700;
+  color: var(--text-secondary);
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.docente-material-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.docente-material-card__content small {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.docente-material-card__content strong {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.docente-material-card__content .muted {
+  font-size: 11px;
+}
+
+.docente-material-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.docente-material-card__actions .btn {
+  flex: 1;
+  min-width: 104px;
+  justify-content: center;
+}
+
+.docente-material-card__actions .icon-btn {
+  flex: 0 0 auto;
+}
+
+.docente-material-empty {
+  grid-column: 1 / -1;
+}
+
+/* ==========================================================================
+   RESPONSIVE — DOCENTE
+   ========================================================================== */
+
+@media (max-width: 1240px) {
+
+  .docente-course-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .docente-grade-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 980px) {
+
+  .docente-attendance-toolbar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .docente-attendance-toolbar__hint {
+    height: auto;
+    min-height: 44px;
+  }
+
+  .docente-attendance-row {
+    align-items: flex-start;
+  }
+
+  .docente-attendance-row__controls {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .docente-attendance-row__obs {
+    flex: 1;
+    width: auto;
+    min-width: 180px;
+  }
+
+  .docente-acta-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+
+  .docente-agenda__item {
+    flex-wrap: wrap;
+  }
+
+  .docente-agenda__body {
+    flex: 1 1 160px;
+  }
+
+  .docente-course-card__metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .docente-unit-card__head {
+    flex-wrap: wrap;
+  }
+
+  .docente-unit-card__badges {
+    order: 3;
+  }
+
+  .docente-unit-card__actions {
+    margin-left: auto;
+  }
+
+  .docente-content-row {
+    grid-template-columns: 24px minmax(0, 1fr);
+  }
+
+  .docente-content-row__order {
+    width: 24px;
+    height: 24px;
+  }
+
+  .docente-content-row__actions {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+    padding-top: 4px;
+  }
+
+  .docente-grade-row__notes {
+    padding-left: 0;
+  }
+
+  .docente-material-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .docente-attendance-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .docente-attendance-footer .btn {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 560px) {
+
+  .docente-course-card__actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .docente-attendance-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .docente-attendance-toolbar .btn {
+    justify-content: center;
+  }
+
+  .docente-attendance-row__student {
+    min-width: 0;
+    flex-basis: 100%;
+  }
+
+  .docente-toggle {
+    width: 100%;
+  }
+
+  .docente-toggle__btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .docente-attendance-row__obs {
+    flex-basis: 100%;
+  }
+
+  .docente-grade-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .docente-grade-row__student {
+    align-items: flex-start;
+  }
+
+  .docente-average {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .docente-grade-note {
+    width: 100%;
+  }
+
+  .docente-grade-note > span {
+    flex: 1;
+  }
+
+  .docente-acta-summary {
+    padding: 12px;
+  }
+
+  .docente-plan-list {
+    padding: 10px;
+  }
+
+  .docente-unit-card__head {
+    padding: 12px;
+  }
+
+  .docente-unit-card__meta {
+    padding: 0 12px 10px;
+    gap: 8px;
+  }
+
+  .docente-unit-card__contents {
+    padding: 12px;
+  }
+
+  .docente-material-card__actions .btn {
+    min-width: 0;
+  }
+}
